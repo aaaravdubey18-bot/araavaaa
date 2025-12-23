@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Aarav's Webpage</title>
+    <style>
+        body {
+            font-family: 'Arial Black', sans-serif; /* Bold font */
+            font-weight: bold; /* Ensure bold */
+            background-color: #DC143C; /* Cherry red */
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+        .page {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        .active {
+            display: flex;
+        }
+        h1, h2, p {
+            margin: 20px;
+            font-size: 2em;
+        }
+        button {
+            background-color: white;
+            color: #DC143C;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 10px;
+            margin: 10px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #FF69B4; /* Lighter red */
+        }
+        iframe {
+            width: 80%;
+            height: 315px;
+            border: none;
+            border-radius: 10px;
+            margin: 20px;
+        }
+        textarea {
+            width: 80%;
+            height: 200px;
+            font-family: 'Arial Black', sans-serif;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            margin: 10px;
+        }
+        .options {
+            display: flex;
+            gap: 20px;
+        }
+        .emoji {
+            font-size: 5em;
+            animation: dance 1s infinite;
+        }
+        @keyframes dance {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+        .think-again {
+            color: yellow;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Welcome -->
+    <div id="page1" class="page active">
+        <h1>Welcome Aradhya Pradhan to Aarav's Webpage</h1>
+        <p>Hope you are going to like it!</p>
+        <button onclick="nextPage(2)">Next</button>
+    </div>
+
+    <!-- Page 2: Favorite Song -->
+    <div id="page2" class="page">
+        <h2>Go ahead with your most likely song</h2>
+        <iframe id="songPlayer" src="c:\Users\aaara\Downloads\ytmp3free.cc_tere-liye-full-song-with-lyrics-by-atif-aslam-musical-mania-youtubemp3free.org.mp3" allowfullscreen></iframe> <!-- Pre-set song: Change the video ID in the src to your desired YouTube video ID -->
+        <button onclick="nextPage(3)">Next</button>
+    </div>
+
+    <!-- Page 3: Paragraph -->
+    <div id="page3" class="page">
+        <h2>A Special Message from Me:</h2>
+        <textarea id="paragraph" placeholder="Write your paragraph here...">Dear Aradhya, today was amazing meeting you. I hope this webpage brings a smile to your face. NTMY Dear badminton player </textarea>
+        <button onclick="nextPage(4)">Next</button>
+    </div>
+
+    <!-- Page 4: Friend Request -->
+    <div id="page4" class="page">
+        <h2>Would you like to be my friend?</h2>
+        <p>I know we met today only, but we will try to make it last more!</p>
+        <div class="options">
+            <button id="yesBtn" onclick="handleYes()">Yes</button>
+            <button id="noBtn" onclick="handleNo()">No</button>
+        </div>
+        <div id="response" style="display: none;">
+            <div class="emoji">💃🕺</div>
+            <p>Great! Let's be friends!</p>
+            <button onclick="nextPage(5)">Thanks</button>
+        </div>
+        <div id="thinkAgain" class="think-again" style="display: none;">
+            Think again! 😊
+        </div>
+    </div>
+
+    <!-- Page 5: Thanks -->
+    <div id="page5" class="page">
+        <h1>Thanks for visiting!</h1>
+        <p>Hope to see you soon! 😊</p>
+    </div>
+
+    <script>
+        let currentPage = 1;
+
+        function nextPage(page) {
+            document.getElementById('page' + currentPage).classList.remove('active');
+            document.getElementById('page' + page).classList.add('active');
+            currentPage = page;
+        }
+
+        function handleYes() {
+            document.querySelector('.options').style.display = 'none';
+            document.getElementById('response').style.display = 'block';
+            document.getElementById('thinkAgain').style.display = 'none';
+        }
+
+        function handleNo() {
+            document.getElementById('thinkAgain').style.display = 'block';
+            // Loop back to asking until yes
+            setTimeout(() => {
+                document.getElementById('thinkAgain').style.display = 'none';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
